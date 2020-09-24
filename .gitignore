@@ -5,3 +5,6 @@
 # XMind
 /XMind/*
 *.xmind
+
+# backup files
+backup*
