@@ -3,4 +3,8 @@
 *.DS_Store
 
 # XMind
+/XMind/*
 *.xmind
+
+# backup files
+backup*

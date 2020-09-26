@@ -2,7 +2,9 @@
 
 Key topics to cover in session 2. 
 
-## Swift Basics
+![Session 2](./Session_2.png)
+
+## Swift Basics - Tour
 
 Session 2 will be all about [Swift](https://docs.swift.org/swift-book/).
 
@@ -38,7 +40,7 @@ var currentLoginAttempt = 0 //variable
 What's the type for variable 'currentLoginAttempt' ? 
 ```
 
-#### Type Annotations
+### Type Annotations
 
 You can provide a type annotation when you declare a constant or variable, to be clear about the kind of values the constant or variable can store. 
 
@@ -51,7 +53,7 @@ message = "Hello, Swift."
 
 It’s rare that you need to write type annotations in practice. If you provide an initial value for a constant or variable at the point that it’s defined, Swift can almost always infer the type to be used for that constant or variable.
 
-#### Printing Constants and Variables
+### Printing Constants and Variables
 
 You can print the current value of a constant or variable with the print(_:separator:terminator:) function:
 
@@ -69,7 +71,7 @@ print("Hello, \(swift).")
 The print(_:separator:terminator:) function is a global function that prints one or more values to an appropriate output. In Xcode, for example, the print(_:separator:terminator:) function prints its output in Xcode’s “console” pane. 
 
 
-#### Comments
+### Comments
 
 Use comments to include nonexecutable text in your code, as a note or reminder to yourself. Comments are ignored by the Swift compiler when your code is compiled.
 
@@ -86,12 +88,6 @@ but is written over multiple lines. */
  /* This is the second, nested multiline comment. */
 This is the end of the first multiline comment. */
 ```
-
-#### Semicolons
-Unlike many other languages, Swift doesn’t require you to write a semicolon (;) after each statement in your code, although you can do so if you wish. However, semicolons are required if you want to write multiple separate statements on a single line:
-
-let cat = "🐱"; print(cat)
-// Prints "🐱"
 
 ### Integers
 
@@ -132,24 +128,6 @@ Float represents a 32-bit floating-point number.
 
 >Double has a precision of at least 15 decimal digits, whereas the precision of Float can be as little as 6 decimal digits. The appropriate floating-point type to use depends on the nature and range of values you need to work with in your code. In situations where either type would be appropriate, Double is preferred.
 
-### Type Safety and Type Inference
-
-Swift is a type-safe language. A type safe language encourages you to be clear about the types of values your code can work with. If part of your code requires a String, you can’t pass it an Int by mistake.
-
-#### Type Inference
-
-If you don’t specify the type of value you need, Swift uses type inference to work out the appropriate type. Type inference enables a compiler to deduce the type of a particular expression automatically when it compiles your code, simply by examining the values you provide.
-
-Type inference is particularly useful when you declare a constant or variable with an initial value. This is often done by assigning a literal value (or literal) to the constant or variable at the point that you declare it. (A literal value is a value that appears directly in your source code, such as 42 and 3.14159 in the examples below.)
-
-```swift
-let meaningOfLife = 42 // meaningOfLife is inferred to be of type Int
-let pi = 3.14159 // pi is inferred to be of type Double
-let anotherPi = 3 + 0.14159 // anotherPi is also inferred to be of type Double
-```
-
-If you combine integer and floating-point literals in an expression, a type of Double will be inferred from the context:
-
 ### Number Examples
 
 #### Range
@@ -186,19 +164,6 @@ let integerPi = Int(pi)
 ```
 Floating-point values are always truncated when used to initialize a new integer value in this way. This means that 4.75 becomes 4, and -3.9 becomes -3.
 
-### Type Aliases
-
-Type aliases define an alternative name for an existing type. You define type aliases with the typealias keyword.
-
-Type aliases are useful when you want to refer to an existing type by a name that is contextually more appropriate, such as when working with data of a specific size from an external source:
-
-typealias GameLevel = UInt16
-Once you define a type alias, you can use the alias anywhere you might use the original name:
-
-```swift
-var maxAmplitudeFound = GameLevel.min //UInt16.min
-// maxAmplitudeFound is now 0
-```
 ### Booleans
 
 Swift has a basic Boolean type, called Bool. Boolean values are referred to as logical, because they can only ever be true or false. Swift provides two Boolean constant values, true and false:
@@ -228,43 +193,23 @@ if i {
 }
 ```
 
-### Tuples
+### Type Safety and Type Inference
 
-Tuples group multiple values into a single compound value. The values within a tuple can be of any type and don’t have to be of the same type as each other.
+Swift is a type-safe language. A type safe language encourages you to be clear about the types of values your code can work with. If part of your code requires a String, you can’t pass it an Int by mistake.
 
-In this example, (404, "Not Found") is a tuple that describes an HTTP status code. An HTTP status code is a special value returned by a web server whenever you request a web page. A status code of 404 Not Found is returned if you request a webpage that doesn’t exist.
+#### Type Inference
 
-```swift
-let http404Error = (404, "Not Found")
-// http404Error is of type (Int, String), and equals (404, "Not Found")
-```
+If you don’t specify the type of value you need, Swift uses type inference to work out the appropriate type. Type inference enables a compiler to deduce the type of a particular expression automatically when it compiles your code, simply by examining the values you provide.
 
-The (404, "Not Found") tuple groups together an Int and a String to give the HTTP status code two separate values: a number and a human-readable description. It can be described as “a tuple of type (Int, String)”.
-
-You can create tuples from any permutation of types, and they can contain as many different types as you like. There’s nothing stopping you from having a tuple of type (Int, Int, Int), or (String, Bool), or indeed any other permutation you require.
-
-You can decompose a tuple’s contents into separate constants or variables, which you then access as usual:
+Type inference is particularly useful when you declare a constant or variable with an initial value. This is often done by assigning a literal value (or literal) to the constant or variable at the point that you declare it. (A literal value is a value that appears directly in your source code, such as 42 and 3.14159 in the examples below.)
 
 ```swift
-let (statusCode, statusMessage) = http404Error
-print("The status code is \(statusCode)")
-// Prints "The status code is 404"
-print("The status message is \(statusMessage)")
-// Prints "The status message is Not Found"
+let meaningOfLife = 42 // meaningOfLife is inferred to be of type Int
+let pi = 3.14159 // pi is inferred to be of type Double
+let anotherPi = 3 + 0.14159 // anotherPi is also inferred to be of type Double
 ```
 
-If you only need some of the tuple’s values, ignore parts of the tuple with an underscore (_) when you decompose the tuple:
-
-```swit
-let (justTheStatusCode, _) = http404Error
-print("The status code is \(justTheStatusCode)")
-// Prints "The status code is 404"
-
-print("The status code is \(http404Error.0)")
-// Prints "The status code is 404"
-print("The status message is \(http404Error.1)")
-// Prints "The status message is Not Found"
-```
+If you combine integer and floating-point literals in an expression, a type of Double will be inferred from the context:
 
 ### Optionals
 
@@ -359,75 +304,22 @@ if let definiteString = assumedString {
 
 >Don’t use an implicitly unwrapped optional when there’s a possibility of a variable becoming nil at a later point. Always use a normal optional type if you need to check for a nil value during the lifetime of a variable.
 
-### Error Handling
+## Basic Operators
 
-You use error handling to respond to error conditions your program may encounter during execution.
+An operator is a special symbol or phrase that you use to check, change, or combine values.
 
-In contrast to optionals, which can use the presence or absence of a value to communicate success or failure of a function, error handling allows you to determine the underlying cause of failure, and, if necessary, propagate the error to another part of your program.
-
-```swift
-func canThrowAnError() throws {
-    // this function may or may not throw an error
-}
-```
-
-```swift
-do {
-    try canThrowAnError()
-    // no error was thrown
-} catch {
-    // an error was thrown
-}
-```
-
-### Assertions and Preconditions
-
-Assertions and preconditions are checks that happen at runtime. You use them to make sure an essential condition is satisfied before executing any further code. If the Boolean condition in the assertion or precondition evaluates to true, code execution continues as usual. If the condition evaluates to false, the current state of the program is invalid; code execution ends, and your app is terminated.
-
-You use assertions and preconditions to express the assumptions you make and the expectations you have while coding, so you can include them as part of your code. Assertions help you find mistakes and incorrect assumptions during development, and preconditions help you detect issues in production.
-
-In addition to verifying your expectations at runtime, assertions and preconditions also become a useful form of documentation within the code. Unlike the error conditions discussed in Error Handling above, assertions and preconditions aren’t used for recoverable or expected errors. Because a failed assertion or precondition indicates an invalid program state, there’s no way to catch a failed assertion.
-
-The difference between assertions and preconditions is in when they’re checked: Assertions are checked only in debug builds, but preconditions are checked in both debug and production builds. In production builds, the condition inside an assertion isn’t evaluated. This means you can use as many assertions as you want during your development process, without impacting performance in production.
-
-
-
-#### Debugging with Assertions
-
-You write an assertion by calling the assert(_:_:file:line:) function from the Swift standard library. You pass this function an expression that evaluates to true or false and a message to display if the result of the condition is false. For example:
-
-```swift
-let age = -3
-assert(age >= 0, "A person's age can't be less than zero.")
-// This assertion fails because -3 is not >= 0.
-
-if age > 10 {
-    print("You can ride the roller-coaster or the ferris wheel.")
-} else if age >= 0 {
-    print("You can ride the ferris wheel.")
-} else {
-    assertionFailure("A person's age can't be less than zero.")
-}
-```
-
-#### Enforcing Preconditions
-
-Use a precondition whenever a condition has the potential to be false, but must definitely be true for your code to continue execution. For example, use a precondition to check that a subscript is not out of bounds, or to check that a function has been passed a valid value.
-
-You write a precondition by calling the precondition(_:_:file:line:) function. You pass this function an expression that evaluates to true or false and a message to display if the result of the condition is false. For example:
-
-```swift
-// In the implementation of a subscript...
-precondition(index > 0, "Index must be greater than zero.")
-You can also call the preconditionFailure(_:file:line:) function to indicate that a failure has occurred—for example, if the default case of a switch was taken, but all valid input data should have been handled by one of the switch’s other cases.
-```
-
-If you compile in unchecked mode (-Ounchecked), preconditions aren’t checked. The compiler assumes that preconditions are always true, and it optimizes your code accordingly. However, the fatalError(_:file:line:) function always halts execution, regardless of optimization settings.
-
-You can use the fatalError(_:file:line:) function during prototyping and early development to create stubs for functionality that hasn’t been implemented yet, by writing fatalError("Unimplemented") as the stub implementation. Because fatal errors are never optimized out, unlike assertions or preconditions, you can be sure that execution always halts if it encounters a stub implementation.
+| Operators  | Symbols  | Example  |
+|---|:---:|---|
+| Assignment Operator  | =  | let b = 10; var a = 5; a = b  |
+| Arithmetic Operators  | + <br> - <br> * <br> / <br> %  | 1 + 2       // equals 3 <br> 5 - 3       // equals 2 <br> 2 * 3       // equals 6 <br> 10.0 / 2.5  // equals 4.0 <br> 9 % 4    // equals 1 |
+| Compound Assignment Operators  | (Arithmetic Operators)=  | var a = 1 <br> a += 2 <br> // a is now equal to 3 |
+| Comparison Operators  | Equal to (a == b) <br> Not equal to (a != b) <br> Greater than (a > b) <br> Less than (a < b) <br> Greater than or equal to (a >= b) <br> Less than or equal to (a <= b)  | 1 == 1   // true <br> 2 != 1   // true <br> 2 > 1    // true <br> 1 < 2    // true <br> 1 >= 1   // true <br> 2 <= 1   // false |
+| Ternary Conditional Operator | con ? a : b | let contentHeight = 40 <br> let hasHeader = true <br> let rowHeight = contentHeight + (hasHeader ? 50 : 20)  |
+| Nil-Coalescing Operator |  ??  | a != nil ? a! : b  |
+| Range Operators | a...b or a..<b  | for index in 1...5 { <br> print("\(index) times 5 is \(index * 5)") <br> }  |
+| Logical Operators | Logical NOT (!a) <br> Logical AND (a && b) <br> Logical OR (a || b)  |  |
 
 ### References
 - [Swift](https://docs.swift.org/swift-book/)
-- [XVim2](https://github.com/XVimProject/XVim2)
 
 

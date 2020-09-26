@@ -2,7 +2,7 @@
 
 Key topics to cover in session 1. 
 
-![Session 1](./Session 1.png)
+![Session 1](./Session_1.png)
 
 ## Introduction
 
