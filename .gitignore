@@ -8,3 +8,7 @@
 
 # backup files
 backup*
+
+# UI
+/UI/*
+
